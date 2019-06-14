@@ -1,0 +1,24 @@
+//
+//  AppPrefixHeader.pch
+//  YQD
+//
+//  Created by lish on 2018/9/17.
+//  Copyright © 2018年 lish. All rights reserved.
+//
+
+#ifndef AppPrefixHeader_pch
+#define AppPrefixHeader_pch
+
+#ifdef __OBJC__
+
+#import "AppLib.h"
+
+#import "AppColor.h"
+#import "AppDefine.h"
+#import "AppConsts.h"
+#import "AppSingleton.h"
+#import "AppConfiguration.h"
+
+
+#endif
+#endif /* AppPrefixHeader_pch */

@@ -27,36 +27,31 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self blindName];
+    [self obtainAvataerData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.headerImg];
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.avatarImg];
-    [self.view addSubview:self.nameLabel];
-    [self.view addSubview:self.mottoLabel];
-    
+    [self.view addSubview:self.titleLabel];
+
+    [self.avatarImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.view.mas_top).offset(kSTATUSBARHEIGHT+21);
+        make.width.height.mas_equalTo(kAdaptedWidth(80));
+    }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.top.equalTo(self.view.mas_top).offset(kSTATUSBARHEIGHT+5);
+        make.top.equalTo(self.view.mas_top).offset(kSTATUSBARHEIGHT+112);
     }];
-    
-    [self.avatarImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left).offset(16);
-        make.top.equalTo(self.view.mas_top).offset(kNAVBARHEIGHT+20);
-        make.width.height.mas_equalTo(kAdaptedWidth(70));
-    }];
-    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.avatarImg.mas_right).offset(15);
-        make.top.equalTo(self.avatarImg.mas_top);
-    }];
-    
-    [self.mottoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.nameLabel);
-        make.top.equalTo(self.nameLabel.mas_bottom).offset(10);
-    }];
-    
+}
+- (void)obtainAvataerData {
+    if (  [HYUserManager shareInstance].currentUser.avaterData) {
+        _avatarImg.image  = [UIImage imageWithData: [HYUserManager shareInstance].currentUser.avaterData];
+    }else{
+        _avatarImg.image  = [UIImage imageNamed:@"resource_icon"];
+    }
 }
 - (void)blindName {
     
@@ -75,7 +70,7 @@
     
     
     HYPodfileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HYPodfileTableViewCell"];
-    NSArray *list = @[@"个人信息",@"联系客服",@"关于我们",@"设置"];
+    NSArray *list = @[@"资料",@"联系客服",@"关于我们",@"设置"];
     if (cell) {
         
         cell.name = [list objectAtIndex:indexPath.item];
@@ -120,7 +115,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.text = @"我的";
+        _titleLabel.text = @"攀大找教室学校端";
         _titleLabel.font = kBoldSystemFontSize(18);
         _titleLabel.textColor = COLOR_JJ_DEFAULT_WHITE;
     }
@@ -139,14 +134,18 @@
 - (UIImageView *)avatarImg {
     if (!_avatarImg ) {
         _avatarImg = [[UIImageView alloc]init];
-        _avatarImg.layer.cornerRadius  = kAdaptedWidth(35);
+        CALayer * layer = [_avatarImg layer];
+        layer.borderColor = [[UIColor whiteColor] CGColor];
+        layer.borderWidth = 1.0f;
+        _avatarImg.layer.cornerRadius  = kAdaptedWidth(40);
         _avatarImg.layer.masksToBounds = YES;
-        _avatarImg.image  = [UIImage imageNamed:@"resource_ellipse"];
+      
+        [self obtainAvataerData];
     }
     return _avatarImg;
 
-
 }
+
 
 - (UILabel *)mottoLabel {
     if (!_mottoLabel) {

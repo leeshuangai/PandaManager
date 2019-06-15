@@ -9,6 +9,7 @@
 #import "HYPersonalInforViewController.h"
 #import "HYEditPersonalInforViewController.h"
 #import "HYPersonalInforCell.h"
+#import "HYAvaterCustomCell.h"
 @interface HYPersonalInforViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
@@ -44,20 +45,61 @@
   
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void )presentPhotoPiker {
     
-    HYPersonalInforCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HYPersonalInforCell"];
-    cell.name = [self.userInfo objectAtIndex:indexPath.item];
-    
-    return cell;
+    [[HYCommonService shareInstance]presentPhotoPickerWithMaxCount:1 finshedHandle:^(NSArray<UIImage *> * _Nonnull photos) {
+        
+        [HYUserManager shareInstance].currentUser.avaterData = UIImageJPEGRepresentation(photos.firstObject, 0.8);
+        
+        [[HYUserManager shareInstance] saveUserInfo:[HYUserManager shareInstance].currentUser completed:nil];
+        
+        [self.tableView reloadData];
+        
+
+        
+        
+    } cancleHandle:^{
+        
+    }];
     
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.item == 0) {
+        HYAvaterCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HYAvaterCustomCell"];
+        cell.selectedHandle = ^{
+            
+            [self presentPhotoPiker];
+            
+        };
+        
+        cell.avaterData = [HYUserManager shareInstance].currentUser.avaterData;
+        
+        return cell;
+        
+    }else{
+       
+        HYPersonalInforCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HYPersonalInforCell"];
+        cell.name = [self.userInfo objectAtIndex:indexPath.item-1];
+        
+        return cell;
+        
+    }
+   
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kAdaptedHeight(60);
+    if (indexPath.item == 0) {
+        return kAdaptedHeight(120);
+    }else{
+         return kAdaptedHeight(60);
+    }
+   
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 7;
+    
+       return 8;
 }
 
 
@@ -69,6 +111,8 @@
         _tableView.tableFooterView = [[UIView alloc]init];
         _tableView.tableHeaderView = [[UIView alloc]init];
         [_tableView registerClass:[HYPersonalInforCell class] forCellReuseIdentifier:@"HYPersonalInforCell"];
+        
+          [_tableView registerClass:[HYAvaterCustomCell class] forCellReuseIdentifier:@"HYAvaterCustomCell"];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;

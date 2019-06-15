@@ -40,4 +40,7 @@
 @property (nonatomic,copy) NSString *officeMobile;
 
 
+@property (nonatomic,strong) NSData *avaterData;
+
+
 @end

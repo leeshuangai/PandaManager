@@ -11,6 +11,8 @@
 #import "HYClassroomCustomView.h"
 #import "HYClassroomFloorViewController.h"
 #import "HYOrderClassroomViewController.h"
+#import "HYUIService.h"
+#import "HYaddBuildingViewController.h"
 @interface HYFirstTabViewController ()
 @property (nonatomic,strong) UIScrollView *scrollewBg;
 @property (nonatomic,strong) UIImageView *headerImg;
@@ -66,20 +68,38 @@
     int count = 3; // 每行按钮的数量为 3
     CGFloat btnWidth = (kScreenWidth-kAdaptedWidth(30)) / count;  //宽
     CGFloat btnHeight = kAdaptedHeight(120); //高
-    for (int i = 0; i < self.classroomList.count; i++) {
+    for (int i = 0; i < self.classroomList.count+1; i++) {
         int row = i / count; // 行
         int col = i % count; // 列
-        HYClassroomModel *model = [self.classroomList objectAtIndex:i];
-        HYClassroomCustomView *view = [[HYClassroomCustomView alloc]initWithIcon:model.img name:model.name];
-        view.tag = 100+i;
-        @weakify(self);
-        view.handle = ^(HYClassroomCustomView * _Nonnull view) {
-            @strongify(self);
-            [self tapCustomView:view];
-        };
-       
-        view.frame = CGRectMake(col * btnWidth, row * btnHeight+10, btnWidth, btnHeight);
-        [self.contentView addSubview:view];
+        if (i == self.classroomList.count) {
+            UIButton *btn = [HYUIService initUIButtonWithTitle:@"" titleColor:[UIColor redColor] font: kSystemFontSize(14)] ;
+            [btn setImage:[UIImage imageNamed:@"icon_plus"] forState:0];
+            [self.contentView addSubview: btn];
+            btn.frame = CGRectMake(col * btnWidth, row * btnHeight+10, btnWidth, btnHeight);
+          
+            [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.headerImg.mas_bottom).offset(20);
+                make.left.equalTo(self.view.mas_left).offset(kAdaptedWidth(15));
+                make.right.equalTo(self.view.mas_right).offset(kAdaptedWidth(-15));
+                make.bottom.equalTo(btn.mas_bottom).offset(0);
+            }];
+            [btn addTarget:self
+                                  action:@selector(BtnClick:)
+          forControlEvents:UIControlEventTouchUpInside];
+        }else {
+            HYClassroomModel *model = [self.classroomList objectAtIndex:i];
+            HYClassroomCustomView *view = [[HYClassroomCustomView alloc]initWithIcon:model.img name:model.name];
+            view.tag = 100+i;
+            @weakify(self);
+            view.handle = ^(HYClassroomCustomView * _Nonnull view) {
+                @strongify(self);
+                [self tapCustomView:view];
+            };
+            
+            view.frame = CGRectMake(col * btnWidth, row * btnHeight+10, btnWidth, btnHeight);
+            [self.contentView addSubview:view];
+        }
+        
     }
     [self.scrollewBg mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentView.mas_bottom).offset(kAdaptedHeight(60));
@@ -91,6 +111,11 @@
     
    
     
+}
+- (void)BtnClick:(UIButton *)btn
+{
+    HYaddBuildingViewController *vc = [[HYaddBuildingViewController alloc] init];
+    [self.navigationController pushViewController:vc animated: YES];
 }
 - (UIScrollView *)scrollewBg {
     if (!_scrollewBg) {
@@ -123,7 +148,7 @@
     //if (_classroomList) {
     _classroomList = [NSArray yy_modelArrayWithClass:[HYClassroomModel class] json:[TPFileHelper loadingMainBundleJsonResouJsonResourceWithFileName:@"ClassroomInfo"]];
     //}
-    
+
     return _classroomList;
     
 }

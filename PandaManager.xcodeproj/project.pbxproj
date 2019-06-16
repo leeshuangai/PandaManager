@@ -21,6 +21,7 @@
 		C16B8FEA22B535BB00C5FC73 /* HYClassroomFloorCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C16B8FE922B535BB00C5FC73 /* HYClassroomFloorCollectionCell.m */; };
 		C16B8FED22B535F900C5FC73 /* HYClassromFloorCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C16B8FEC22B535F800C5FC73 /* HYClassromFloorCollectionHeaderView.m */; };
 		C16B8FF022B5364C00C5FC73 /* HYClassromFloorCollectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C16B8FEF22B5364C00C5FC73 /* HYClassromFloorCollectionFooterView.m */; };
+		C16B8FF322B5E93500C5FC73 /* HYaddBuildingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C16B8FF222B5E93500C5FC73 /* HYaddBuildingViewController.m */; };
 		C1DFC6D322B39C6600FA3E53 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1DFC6D222B39C6600FA3E53 /* AppDelegate.m */; };
 		C1DFC6D622B39C6600FA3E53 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1DFC6D522B39C6600FA3E53 /* ViewController.m */; };
 		C1DFC6D922B39C6600FA3E53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1DFC6D722B39C6600FA3E53 /* Main.storyboard */; };
@@ -157,6 +158,8 @@
 		C16B8FEC22B535F800C5FC73 /* HYClassromFloorCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYClassromFloorCollectionHeaderView.m; sourceTree = "<group>"; };
 		C16B8FEE22B5364C00C5FC73 /* HYClassromFloorCollectionFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYClassromFloorCollectionFooterView.h; sourceTree = "<group>"; };
 		C16B8FEF22B5364C00C5FC73 /* HYClassromFloorCollectionFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYClassromFloorCollectionFooterView.m; sourceTree = "<group>"; };
+		C16B8FF122B5E93500C5FC73 /* HYaddBuildingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYaddBuildingViewController.h; sourceTree = "<group>"; };
+		C16B8FF222B5E93500C5FC73 /* HYaddBuildingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYaddBuildingViewController.m; sourceTree = "<group>"; };
 		C1DFC6CE22B39C6600FA3E53 /* PandaManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandaManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1DFC6D122B39C6600FA3E53 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C1DFC6D222B39C6600FA3E53 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -866,6 +869,8 @@
 				C16B8FC722B5273300C5FC73 /* HYClassroomCustomView.m */,
 				C1DFC7A022B39CCC00FA3E53 /* HYFirstTabViewController.h */,
 				C1DFC7A122B39CCC00FA3E53 /* HYFirstTabViewController.m */,
+				C16B8FF122B5E93500C5FC73 /* HYaddBuildingViewController.h */,
+				C16B8FF222B5E93500C5FC73 /* HYaddBuildingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1125,6 +1130,7 @@
 				C1DFC7C522B39CCD00FA3E53 /* CIImage+Extension.m in Sources */,
 				C1DFC6D622B39C6600FA3E53 /* ViewController.m in Sources */,
 				C16B8FD222B5319300C5FC73 /* HYOrderClassroomViewController.m in Sources */,
+				C16B8FF322B5E93500C5FC73 /* HYaddBuildingViewController.m in Sources */,
 				C1DFC82922B3A89A00FA3E53 /* HYAboutUsViewController.m in Sources */,
 				C16B8FE722B5357D00C5FC73 /* HYClassroomFloorViewController.m in Sources */,
 				C1DFC7CA22B39CCD00FA3E53 /* HYTextFieldView.m in Sources */,

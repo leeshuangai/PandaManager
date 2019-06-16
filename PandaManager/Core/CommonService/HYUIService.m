@@ -26,7 +26,7 @@
     
     if (titleColor)  [btn setTitleColor:titleColor forState:0];
     if (font)btn.titleLabel.font = font;
-    if (title.isNotBlank)  [btn setTitle:@"注册账号" forState:0];
+    if (title.isNotBlank)  [btn setTitle:title forState:0];
     return btn;
 }
 

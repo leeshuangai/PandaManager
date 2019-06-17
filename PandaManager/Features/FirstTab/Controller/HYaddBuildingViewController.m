@@ -14,6 +14,7 @@
 @property (nonatomic,strong) UIImageView *avatarImg;
 @property (nonatomic,strong) NSArray *arr;
 @property (nonatomic,strong) NSArray *placeholderArr;
+@property (nonatomic,strong) UIButton *btn1;
 @end
 
 @implementation HYaddBuildingViewController
@@ -29,8 +30,11 @@
 }
 -(void)initUI {
     [self.view addSubview: self.avatarView];
-    self.avatarImg= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_img_default"]];
-    [self.avatarView addSubview:self.avatarImg];
+    self.btn1 = [HYUIService initUIButtonWithTitle:@"" titleColor:[UIColor redColor] font: kSystemFontSize(14)] ;
+    [self.btn1 setImage:[UIImage imageNamed:@"icon_img_default"] forState:0];
+    [self.btn1 addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+//    self.avatarImg= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_img_default"]];
+    [self.avatarView addSubview:self.btn1];
     UIButton *btn = [HYUIService initUIButtonWithTitle:@"上传" titleColor:[UIColor whiteColor] font: kSystemFontSize(14)] ;
     btn.backgroundColor = COLOR_JJ_BLUE_THEME;
     btn.layer.cornerRadius = 20;
@@ -50,7 +54,7 @@
             make.top.equalTo(self.avatarView.mas_bottom).offset(10+i*kAdaptedHeight(50));
         }];
     }
-    [self.avatarImg mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.btn1 mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(kAdaptedWidth(80));
         make.height.mas_equalTo(kAdaptedHeight(80));
         make.left.equalTo(self.avatarView.mas_left).offset(15);
@@ -64,6 +68,9 @@
     }];
 
 }
+-(void)btnAction:(UIButton *)btn{
+     [self presentPhotoPiker];
+}
 -(UIView *)avatarView {
     if (!_avatarView) {
         _avatarView= [[UIView alloc] init];
@@ -71,6 +78,19 @@
         _avatarView.backgroundColor = [UIColor whiteColor];
     }
     return _avatarView;
+}
+- (void )presentPhotoPiker {
+    
+    [[HYCommonService shareInstance]presentPhotoPickerWithMaxCount:1 finshedHandle:^(NSArray<UIImage *> * _Nonnull photos) {
+        
+        [HYUserManager shareInstance].currentUser.avaterData = UIImageJPEGRepresentation(photos.firstObject, 0.8);
+        
+        [[HYUserManager shareInstance] saveUserInfo:[HYUserManager shareInstance].currentUser completed:nil];
+        
+    } cancleHandle:^{
+        
+    }];
+    
 }
 - (NSString *)getNavigationTitle {
     return @"添加教学楼";

@@ -40,6 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUI];
+
 }
 - (void)tapRegisterBtn {
     HYRegisterViewController *vc = [[HYRegisterViewController alloc]init];

@@ -24,7 +24,7 @@
   
     self.view.backgroundColor = [UIColor whiteColor];
     self.arr = @[@"教学楼", @"楼层数",@"每层教室数量", @"开发时间"];
-    self.placeholderArr = @[@"请填入教学楼名称", @"请填入楼层数",@"请填入教室数量", @"请填写开放时间"];
+    self.placeholderArr = @[@"请填入教学楼名称", @"请填入楼层数",@"请填入教室数量", @"请填写开放时间 例如:06:00-21:00"];
     // Do any additional setup after loading the view.
     [self initUI];
 }
@@ -82,10 +82,7 @@
 - (void )presentPhotoPiker {
     
     [[HYCommonService shareInstance]presentPhotoPickerWithMaxCount:1 finshedHandle:^(NSArray<UIImage *> * _Nonnull photos) {
-        
-        [HYUserManager shareInstance].currentUser.avaterData = UIImageJPEGRepresentation(photos.firstObject, 0.8);
-        
-        [[HYUserManager shareInstance] saveUserInfo:[HYUserManager shareInstance].currentUser completed:nil];
+        [self.btn1 setImage:photos.firstObject forState:0];
         
     } cancleHandle:^{
         

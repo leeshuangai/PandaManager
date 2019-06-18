@@ -40,6 +40,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUI];
+    
+ 
+    
 }
 - (void)tapLoginBtn {
     HYLoginViewController *vc = [[HYLoginViewController alloc]init];
@@ -234,6 +237,7 @@
     if (!_registerBtn) {
         _registerBtn = [[HYSubmitButton alloc]init];
         _registerBtn.titleString = @"注册账号";
+        
         @weakify(self);
         _registerBtn.clickHandle = ^{
             @strongify(self);

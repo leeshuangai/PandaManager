@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)becomeFirstResponder;
 
 - (void)textFieldResignFirstResponder;
+
 @end
 
 NS_ASSUME_NONNULL_END

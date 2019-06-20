@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HYClassroomModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HYClassroomFloorCollectionCell : UICollectionViewCell
+
 @property (nonatomic,copy) NSString *floor;
+
+@property (nonatomic,assign) BOOL isSelectedRoom;
+
 @end
 
 NS_ASSUME_NONNULL_END

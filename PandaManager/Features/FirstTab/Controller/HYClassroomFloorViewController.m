@@ -11,9 +11,17 @@
 #import "HYClassromFloorCollectionHeaderView.h"
 #import "HYClassromFloorCollectionFooterView.h"
 #import "HYOrderClassroomViewController.h"
+#import "HYAddClassroomFloorCollectionCell.h"
+#import "HYCustomAlertView.h"
+
+
 @interface HYClassroomFloorViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic,strong) UICollectionView *collectionView;
+
+@property (nonatomic,assign) NSIndexPath *selectedIndex;
+
+@property (nonatomic,strong) HYSubmitButton *submitBtn;
 
 @end
 
@@ -22,28 +30,101 @@
 - (void)viewDidLoad {
    
     [super viewDidLoad];
+   
     [self.view addSubview:self.collectionView];
+     [self.view addSubview:self.submitBtn];
+    [self.submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view.mas_bottom).offset(-kSAFEAREABOTTOM- kAdaptedHeight(20));
+        make.centerX.equalTo(self.view);
+        make.width.mas_equalTo(kScreenWidth - kAdaptedWidth(60));
+        make.height.mas_equalTo(kAdaptedHeight(45));
+    }];
+    
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.submitBtn.mas_top);
+        make.top.equalTo(self.view.mas_top).offset(kNAVBARHEIGHT);
+    }];
     self.view.backgroundColor = COLOR_JJ_BACKGROUND;
 }
-
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+#pragma mark event
+- (void)tapAddBtnWithAtIndexPath:(NSIndexPath *)indexPath{
     
-    HYClassroomFloorCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HYClassroomFloorCollectionCell"  forIndexPath:indexPath];
     
+    NSInteger floor = indexPath.section +1;
 
-    cell.floor = [NSString stringWithFormat:@"%ld0%ld",(long)indexPath.section+1,indexPath.item+1];
-    
-    return cell;
+    [HYCustomAlertView alertViewWithDetail:[NSString stringWithFormat:@"确认%ld楼添加教室？",floor] cancleTitle:@"取消" commitTitle:@"确认" cancleHandle:^(HYCustomAlertView *alert) {
+    } commitHandle:^(HYCustomAlertView *alert) {
+        [alert dismissView];
+       
+        NSString *num = self.classroomModel.floorInfo[indexPath.section];
+        
+        NSMutableArray *numList = [NSMutableArray arrayWithArray:self.classroomModel.floorInfo];
+        
+        [numList replaceObjectAtIndex:indexPath.section withObject:[NSString stringWithFormat:@"%d",num.intValue+1]];
+        
+        
+        self.classroomModel.floorInfo = numList.mutableCopy;
+        
+        [[HYAPIManager shareInstance]queryModifyClassrommWithModel:self.classroomModel completion:^(BOOL success, id  _Nonnull data, NSString * _Nonnull error) {
+            if (success) {
+                self.classroomModel = data;
+                [self.collectionView reloadData];
+                [HYHUD showSuccessHUD:@"添加成功"];
+            }else{
+                [HYHUD showSuccessHUD:error];
+            }
+        }];
+    }];
     
     
 }
 
+
+#pragma mark delegate
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+     NSString *num= self.classroomModel.floorInfo[indexPath.section];
+    
+    if (indexPath.item == num.intValue) {
+        
+        
+        HYAddClassroomFloorCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HYAddClassroomFloorCollectionCell"  forIndexPath:indexPath];
+        
+        @weakify(self);
+        cell.tapAddHandle = ^{
+            @strongify(self);
+            [self tapAddBtnWithAtIndexPath:indexPath];
+        };
+        
+        return cell;
+    }else{
+        
+        HYClassroomFloorCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HYClassroomFloorCollectionCell"  forIndexPath:indexPath];
+        
+        if (self.selectedIndex == indexPath) {
+            cell.isSelectedRoom = YES;
+        }else {
+            cell.isSelectedRoom = NO;
+        }
+
+        cell.floor = [NSString stringWithFormat:@"%ld0%ld",(long)indexPath.section+1,indexPath.item+1];
+        
+        
+        
+        return cell;
+    }
+   
+    
+    
+}
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return self.classroomModel.classroomCount.intValue;
+    NSString *num= self.classroomModel.floorInfo[section];
+    
+    return num.intValue + 1;
     
 }
 
@@ -55,11 +136,10 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    HYOrderClassroomViewController *vc = [[HYOrderClassroomViewController alloc]init];
-    self.classroomModel.floor = [NSString stringWithFormat:@"%ld0%ld",(long)indexPath.section+1,indexPath.item+1];
-    vc.classroomModel = self.classroomModel;
+
+    self.selectedIndex = indexPath;
+    [self.collectionView reloadData];
     
-    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
@@ -116,6 +196,8 @@
         _collectionView.backgroundColor = COLOR_JJ_DEFAULT_WHITE;
         
         
+          [_collectionView registerNib:[UINib nibWithNibName:@"HYAddClassroomFloorCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"HYAddClassroomFloorCollectionCell"];
+        
         [_collectionView registerClass:[HYClassroomFloorCollectionCell class] forCellWithReuseIdentifier:@"HYClassroomFloorCollectionCell"];
         
        
@@ -128,5 +210,51 @@
 }
 - (NSString *)getNavigationTitle {
     return self.classroomModel.name;
+}
+
+
+- (UIImage *)getCustomNavigationBarRightButtonImage {
+    return [UIImage imageNamed:@"icon_delete_white"];
+}
+- (void)customNavigationBarRightButtonAction:(id)sender {
+    
+    if (self.selectedIndex) {
+      
+        [HYCustomAlertView alertViewWithDetail:[NSString stringWithFormat:@"确认删除%@教室？",[NSString stringWithFormat:@"%ld0%ld",(long)self.selectedIndex.section+1,self.selectedIndex.item+1]] cancleTitle:@"取消" commitTitle:@"确认" cancleHandle:^(HYCustomAlertView *alert) {
+            
+            
+        } commitHandle:^(HYCustomAlertView *alert) {
+            [alert dismissView];
+            
+            [[HYAPIManager shareInstance]postWithCompletion:^(BOOL success, id  _Nonnull data, NSString * _Nonnull error) {
+                if (success) {
+                    [HYCustomAlertView alertViewWithDetail:@"删除该教室需要审核，以免影响预约该教室的用户，请耐心等待" cancleTitle:@"我知道了" cancleHandle:nil];
+                }else{
+                    [HYHUD showSuccessHUD:error];
+                }
+            }];
+            
+        }];
+        
+    }
+    else{
+        [HYHUD showSuccessHUD:@"请选择要要删除的楼层"];
+    }
+}
+- (HYSubmitButton *)submitBtn {
+    if (!_submitBtn) {
+        _submitBtn = [[HYSubmitButton alloc]init];
+        _submitBtn.titleString = @"查看教室预约记录";
+        @weakify(self);
+        _submitBtn.clickHandle = ^{
+            @strongify(self);
+            HYOrderClassroomViewController *vc = [[HYOrderClassroomViewController alloc]init];
+            vc.classroomModel = self.classroomModel;
+            
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        };
+    }
+    return _submitBtn;
 }
 @end

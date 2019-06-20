@@ -11,6 +11,7 @@
 #import "HYSubmitButton.h"
 #import "HYLoginViewController.h"
 #import "HYCustomAlertView.h"
+
 @interface HYSetViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) HYSubmitButton *submitBtn;
@@ -75,25 +76,19 @@
 }
 - (void)tapLogoutBtn {
     
-    [[HYAPIManager shareInstance]queryUserLoginoutWithUserId:        [HYUserManager shareInstance].currentUser.userId completion:^(BOOL success, id  _Nonnull data, NSString * _Nonnull error) {
+    
+    [[HYAPIManager shareInstance]queryUserLoginoutWithUserId:[HYUserManager shareInstance].currentUser.userId completion:^(BOOL success, id  _Nonnull data, NSString * _Nonnull error) {
         
         if (success) {
             
-            HYLoginViewController *vc = [[HYLoginViewController alloc]init];
-            
-            CATransition *trans = [[CATransition alloc] init];
-            trans.type = kCATransitionPush;
-            trans.subtype = kCATransitionFromRight;
-            trans.duration = 0.25;
-            
-            [[UIApplication sharedApplication].keyWindow.layer addAnimation:trans forKey:nil];
-            [UIApplication sharedApplication].keyWindow.rootViewController = vc;
+            [HYCommonService needLogin];
             
         }
-
+        
         [HYHUD showSuccessHUD:success?@"退出登录成功":error];
         
     }];
+   
 }
 - (UITableView *)tableView {
     if (!_tableView) {

@@ -76,12 +76,7 @@
             else {
                 
 
-                CATransition *trans = [[CATransition alloc] init];
-                trans.type = kCATransitionPush;
-                trans.subtype = kCATransitionFromRight;
-                trans.duration = 0.25;
-                [[UIApplication sharedApplication].keyWindow.layer addAnimation:trans forKey:nil];
-                [UIApplication sharedApplication].keyWindow.rootViewController = [[TabBarViewController alloc]init];
+                [HYCommonService swicthTabRootController];
                 
                 [HYHUD showSuccessHUD:@"注册成功"];
             }
@@ -185,6 +180,7 @@
     if (!_headerBg) {
         _headerBg = [[UIImageView alloc]init];
         _headerBg.image = [UIImage imageNamed:@"icon_headerIcon"];
+        _headerBg.contentMode =UIViewContentModeScaleAspectFit;
     }
     return _headerBg;
 }

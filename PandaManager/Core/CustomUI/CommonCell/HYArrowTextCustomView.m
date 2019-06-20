@@ -13,7 +13,7 @@
 @property (nonatomic,strong) UIView *bg;
 @property (nonatomic,strong) UILabel *nameLabel;
 @property (nonatomic,strong) UIImageView *iconImg;
-
+@property (nonatomic,strong) UIView *line;
 
 @end
 @implementation HYArrowTextCustomView
@@ -46,7 +46,7 @@
     [self addSubview:self.nameLabel];
     [self addSubview:self.tf];
     [self addSubview:self.iconImg];
-
+    [self addSubview:self.line];
     
     [self.bg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(0);
@@ -70,6 +70,11 @@
         make.right.equalTo(self.mas_right).offset(-30);
         make.centerY.equalTo(self.bg);
         
+    }];
+    [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self);
+        make.bottom.equalTo(self.mas_bottom).offset(-1);
+        make.height.mas_equalTo(1);
     }];
 }
 - (void)setName:(NSString *)name {
@@ -116,6 +121,13 @@
     }
     
     return _bg;
+}
+- (UIView *)line {
+    if (!_line) {
+        _line = [[UIView alloc]init];
+        _line.backgroundColor = COLOR_JJ_Alert_LINE;
+    }
+    return _line;
 }
 
 @end

@@ -29,6 +29,23 @@
     return __singleton__;
     
 }
++ (BOOL)isNeedLogin {
+    
+    if (![HYUserManager shareInstance].currentUser.userId.isNotBlank) {
+        
+        
+        HYLoginViewController *loginvc = [[HYLoginViewController alloc]init];
+        
+        UIViewController *vc = [NSObject getCurrentVC];
+        [vc presentViewController:loginvc animated:YES completion:nil];
+        
+        return YES;
+    }else{
+        return NO;
+    }
+    
+    
+}
 + (void)needLogin {
     
     if (![HYUserManager shareInstance].currentUser.userId.isNotBlank) {
@@ -38,6 +55,8 @@
         
         UIViewController *vc = [NSObject getCurrentVC];
         [vc presentViewController:loginvc animated:YES completion:nil];
+        
+        return;
     }
     
     
@@ -70,7 +89,7 @@
     [[UIApplication sharedApplication].keyWindow.layer addAnimation:trans forKey:nil];
     [UIApplication sharedApplication].keyWindow.rootViewController = vc;
     
-    
+
 }
 
 - (void)presentPhotoPickerWithMaxCount:(NSInteger)maxCount finshedHandle:(ImagePickerControllerfFinshed)finshedHandle cancleHandle:(ImagePickerControllerfFinshedCancle)cancaleHandle {

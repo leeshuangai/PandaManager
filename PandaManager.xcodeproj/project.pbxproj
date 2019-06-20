@@ -23,6 +23,14 @@
 		C1C6898922B9302F00B4815F /* HYOrderClassroomFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C6897522B9302E00B4815F /* HYOrderClassroomFooterView.m */; };
 		C1C6898A22B9302F00B4815F /* HYHaveOrderRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C6897622B9302E00B4815F /* HYHaveOrderRecordTableCell.m */; };
 		C1C6898B22B9302F00B4815F /* HYOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C6897922B9302E00B4815F /* HYOrderModel.m */; };
+		C1C6898E22BA1A7A00B4815F /* HYOrderRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C6898D22BA1A7A00B4815F /* HYOrderRecordCell.m */; };
+		C1C6899222BA219200B4815F /* HYNullTabTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C6899022BA219200B4815F /* HYNullTabTableCell.m */; };
+		C1C6899322BA219200B4815F /* HYNullTabTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C6899122BA219200B4815F /* HYNullTabTableCell.xib */; };
+		C1C6899722BA380600B4815F /* HYAddClassroomFloorCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C6899522BA380600B4815F /* HYAddClassroomFloorCollectionCell.m */; };
+		C1C6899822BA380600B4815F /* HYAddClassroomFloorCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C6899622BA380600B4815F /* HYAddClassroomFloorCollectionCell.xib */; };
+		C1C6899B22BB5A7B00B4815F /* HYSubcribeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C6899A22BB5A7B00B4815F /* HYSubcribeInfoViewController.m */; };
+		C1C689A222BB5E1300B4815F /* HYSubcribeInfoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C689A022BB5E1300B4815F /* HYSubcribeInfoTableCell.m */; };
+		C1C689A322BB5E1300B4815F /* HYSubcribeInfoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C689A122BB5E1300B4815F /* HYSubcribeInfoTableCell.xib */; };
 		C1DFC6D322B39C6600FA3E53 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1DFC6D222B39C6600FA3E53 /* AppDelegate.m */; };
 		C1DFC6D622B39C6600FA3E53 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1DFC6D522B39C6600FA3E53 /* ViewController.m */; };
 		C1DFC6D922B39C6600FA3E53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1DFC6D722B39C6600FA3E53 /* Main.storyboard */; };
@@ -162,6 +170,19 @@
 		C1C6897A22B9302E00B4815F /* HYOrderClassroomHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYOrderClassroomHeaderView.h; sourceTree = "<group>"; };
 		C1C6897B22B9302F00B4815F /* HYOrderClassroomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYOrderClassroomViewController.h; sourceTree = "<group>"; };
 		C1C6897C22B9302F00B4815F /* HYClassroomFloorCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYClassroomFloorCollectionCell.h; sourceTree = "<group>"; };
+		C1C6898C22BA1A7A00B4815F /* HYOrderRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYOrderRecordCell.h; sourceTree = "<group>"; };
+		C1C6898D22BA1A7A00B4815F /* HYOrderRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYOrderRecordCell.m; sourceTree = "<group>"; };
+		C1C6898F22BA219200B4815F /* HYNullTabTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYNullTabTableCell.h; sourceTree = "<group>"; };
+		C1C6899022BA219200B4815F /* HYNullTabTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNullTabTableCell.m; sourceTree = "<group>"; };
+		C1C6899122BA219200B4815F /* HYNullTabTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYNullTabTableCell.xib; sourceTree = "<group>"; };
+		C1C6899422BA380600B4815F /* HYAddClassroomFloorCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYAddClassroomFloorCollectionCell.h; sourceTree = "<group>"; };
+		C1C6899522BA380600B4815F /* HYAddClassroomFloorCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYAddClassroomFloorCollectionCell.m; sourceTree = "<group>"; };
+		C1C6899622BA380600B4815F /* HYAddClassroomFloorCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYAddClassroomFloorCollectionCell.xib; sourceTree = "<group>"; };
+		C1C6899922BB5A7B00B4815F /* HYSubcribeInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSubcribeInfoViewController.h; sourceTree = "<group>"; };
+		C1C6899A22BB5A7B00B4815F /* HYSubcribeInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSubcribeInfoViewController.m; sourceTree = "<group>"; };
+		C1C6899F22BB5E1300B4815F /* HYSubcribeInfoTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSubcribeInfoTableCell.h; sourceTree = "<group>"; };
+		C1C689A022BB5E1300B4815F /* HYSubcribeInfoTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSubcribeInfoTableCell.m; sourceTree = "<group>"; };
+		C1C689A122BB5E1300B4815F /* HYSubcribeInfoTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HYSubcribeInfoTableCell.xib; sourceTree = "<group>"; };
 		C1DFC6CE22B39C6600FA3E53 /* PandaManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandaManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1DFC6D122B39C6600FA3E53 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C1DFC6D222B39C6600FA3E53 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -371,27 +392,41 @@
 		C1C6895E22B9302E00B4815F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C1C6898C22BA1A7A00B4815F /* HYOrderRecordCell.h */,
+				C1C6898D22BA1A7A00B4815F /* HYOrderRecordCell.m */,
+				C1C6896B22B9302E00B4815F /* HYOrderClassroomViewController.m */,
 				C1C6895F22B9302E00B4815F /* HYClassroomFloorViewController.h */,
+				C1C6897022B9302E00B4815F /* HYClassroomFloorViewController.m */,
+				C1C6899422BA380600B4815F /* HYAddClassroomFloorCollectionCell.h */,
+				C1C6899522BA380600B4815F /* HYAddClassroomFloorCollectionCell.m */,
+				C1C6899622BA380600B4815F /* HYAddClassroomFloorCollectionCell.xib */,
 				C1C6896022B9302E00B4815F /* HYClassromFloorCollectionFooterView.m */,
 				C1C6896122B9302E00B4815F /* HYFirstTabViewController.h */,
+				C1C6896E22B9302E00B4815F /* HYFirstTabViewController.m */,
 				C1C6896222B9302E00B4815F /* HYNoOrderRecordTableCell.m */,
 				C1C6896322B9302E00B4815F /* HYClassroomCustomView.h */,
+				C1C6897322B9302E00B4815F /* HYClassroomCustomView.m */,
 				C1C6896422B9302E00B4815F /* HYCommitOrderViewController.m */,
 				C1C6896522B9302E00B4815F /* HYClassromFloorCollectionHeaderView.h */,
 				C1C6896622B9302E00B4815F /* HYOrderSuccessViewController.m */,
 				C1C6896722B9302E00B4815F /* HYaddBuildingViewController.m */,
+				C1C6899922BB5A7B00B4815F /* HYSubcribeInfoViewController.h */,
+				C1C6899A22BB5A7B00B4815F /* HYSubcribeInfoViewController.m */,
+				C1C6899F22BB5E1300B4815F /* HYSubcribeInfoTableCell.h */,
+				C1C689A022BB5E1300B4815F /* HYSubcribeInfoTableCell.m */,
+				C1C689A122BB5E1300B4815F /* HYSubcribeInfoTableCell.xib */,
 				C1C6896822B9302E00B4815F /* HYHaveOrderRecordTableCell.h */,
 				C1C6896922B9302E00B4815F /* HYOrderClassroomFooterView.h */,
+				C1C6897C22B9302F00B4815F /* HYClassroomFloorCollectionCell.h */,
 				C1C6896A22B9302E00B4815F /* HYClassroomFloorCollectionCell.m */,
-				C1C6896B22B9302E00B4815F /* HYOrderClassroomViewController.m */,
+				C1C6898F22BA219200B4815F /* HYNullTabTableCell.h */,
+				C1C6899022BA219200B4815F /* HYNullTabTableCell.m */,
+				C1C6899122BA219200B4815F /* HYNullTabTableCell.xib */,
 				C1C6896C22B9302E00B4815F /* HYOrderClassroomHeaderView.m */,
 				C1C6896D22B9302E00B4815F /* HYOrderModel.h */,
-				C1C6896E22B9302E00B4815F /* HYFirstTabViewController.m */,
 				C1C6896F22B9302E00B4815F /* HYClassromFloorCollectionFooterView.h */,
-				C1C6897022B9302E00B4815F /* HYClassroomFloorViewController.m */,
 				C1C6897122B9302E00B4815F /* HYClassromFloorCollectionHeaderView.m */,
 				C1C6897222B9302E00B4815F /* HYCommitOrderViewController.h */,
-				C1C6897322B9302E00B4815F /* HYClassroomCustomView.m */,
 				C1C6897422B9302E00B4815F /* HYNoOrderRecordTableCell.h */,
 				C1C6897522B9302E00B4815F /* HYOrderClassroomFooterView.m */,
 				C1C6897622B9302E00B4815F /* HYHaveOrderRecordTableCell.m */,
@@ -400,7 +435,6 @@
 				C1C6897922B9302E00B4815F /* HYOrderModel.m */,
 				C1C6897A22B9302E00B4815F /* HYOrderClassroomHeaderView.h */,
 				C1C6897B22B9302F00B4815F /* HYOrderClassroomViewController.h */,
-				C1C6897C22B9302F00B4815F /* HYClassroomFloorCollectionCell.h */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1013,6 +1047,7 @@
 				C1DFC7C122B39CCD00FA3E53 /* scanLine@2x.png in Resources */,
 				C1DFC7DB22B39CCD00FA3E53 /* icon_back_black.png in Resources */,
 				C1DFC81522B3A0A200FA3E53 /* News.json in Resources */,
+				C1C689A322BB5E1300B4815F /* HYSubcribeInfoTableCell.xib in Resources */,
 				C1DFC7DE22B39CCD00FA3E53 /* icon_arrow_black.png in Resources */,
 				C1DFC7BB22B39CCD00FA3E53 /* loading@2x.png in Resources */,
 				C1DFC7BF22B39CCD00FA3E53 /* scanscanBg.png in Resources */,
@@ -1026,10 +1061,12 @@
 				C1DFC7C322B39CCD00FA3E53 /* tip@2x.png in Resources */,
 				C1DFC7D822B39CCD00FA3E53 /* 1616_CrosGreyaaa@2x.png in Resources */,
 				C1DFC7BC22B39CCD00FA3E53 /* loading@3x.png in Resources */,
+				C1C6899322BA219200B4815F /* HYNullTabTableCell.xib in Resources */,
 				C1DFC7E222B39CCD00FA3E53 /* icon_back@3x.png in Resources */,
 				C1DFC81622B3A0A200FA3E53 /* ClassroomInfo.json in Resources */,
 				C1DFC6D922B39C6600FA3E53 /* Main.storyboard in Resources */,
 				C1DFC7DF22B39CCD00FA3E53 /* icon_arrow_black@3x.png in Resources */,
+				C1C6899822BA380600B4815F /* HYAddClassroomFloorCollectionCell.xib in Resources */,
 				C1DFC7C022B39CCD00FA3E53 /* scanLine@3x.png in Resources */,
 				C1DFC7E522B39CCD00FA3E53 /* 3030_LodWitlin@2x.png in Resources */,
 				C1DFC7D622B39CCD00FA3E53 /* 1616_CrosGreyaaa@3x.png in Resources */,
@@ -1123,6 +1160,7 @@
 				C1C6898722B9302F00B4815F /* HYClassromFloorCollectionHeaderView.m in Sources */,
 				C1DFC7FC22B39CCD00FA3E53 /* HYSecondTabViewController.m in Sources */,
 				C1DFC7C722B39CCD00FA3E53 /* HYCustomSearchBar.m in Sources */,
+				C1C6899B22BB5A7B00B4815F /* HYSubcribeInfoViewController.m in Sources */,
 				C1DFC7EF22B39CCD00FA3E53 /* UIColor+Convert.m in Sources */,
 				C1DFC7C622B39CCD00FA3E53 /* CreatQCodeViewController.m in Sources */,
 				C1C6898222B9302F00B4815F /* HYClassroomFloorCollectionCell.m in Sources */,
@@ -1135,6 +1173,7 @@
 				C1C6897E22B9302F00B4815F /* HYNoOrderRecordTableCell.m in Sources */,
 				C1C6897F22B9302F00B4815F /* HYCommitOrderViewController.m in Sources */,
 				C1DFC7CA22B39CCD00FA3E53 /* HYTextFieldView.m in Sources */,
+				C1C6899222BA219200B4815F /* HYNullTabTableCell.m in Sources */,
 				C1DFC82722B3A89A00FA3E53 /* HYEditPersonalInforViewController.m in Sources */,
 				C1DFC7B422B39CCD00FA3E53 /* MCTabBar.m in Sources */,
 				C1DFC7B322B39CCD00FA3E53 /* BulgeTabBarController.m in Sources */,
@@ -1163,6 +1202,7 @@
 				C1DFC7EB22B39CCD00FA3E53 /* NSMutableAttributedString+Addtion.m in Sources */,
 				C1DFC80F22B3A06900FA3E53 /* HYLoginViewController.m in Sources */,
 				C1DFC7F922B39CCD00FA3E53 /* TPFMDB.m in Sources */,
+				C1C6899722BA380600B4815F /* HYAddClassroomFloorCollectionCell.m in Sources */,
 				C1DFC7B122B39CCD00FA3E53 /* HYSubmitButton.m in Sources */,
 				C1DFC7CB22B39CCD00FA3E53 /* HYTextFieldIconView.m in Sources */,
 				C1DFC7FA22B39CCD00FA3E53 /* TPFileHelper.m in Sources */,
@@ -1175,9 +1215,11 @@
 				C1DFC7ED22B39CCD00FA3E53 /* NSDate+JKUtilities.m in Sources */,
 				C1DFC6D322B39C6600FA3E53 /* AppDelegate.m in Sources */,
 				C1DFC7F722B39CCD00FA3E53 /* NSObject+Encoding.m in Sources */,
+				C1C689A222BB5E1300B4815F /* HYSubcribeInfoTableCell.m in Sources */,
 				C1DFC7D322B39CCD00FA3E53 /* HYUIService.m in Sources */,
 				C1DFC7CD22B39CCD00FA3E53 /* HYAPIManager+Features.m in Sources */,
 				C1DFC80322B39CCD00FA3E53 /* HYThirdTabViewController.m in Sources */,
+				C1C6898E22BA1A7A00B4815F /* HYOrderRecordCell.m in Sources */,
 				C1DFC7F422B39CCD00FA3E53 /* NSString+Regular.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

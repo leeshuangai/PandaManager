@@ -8,6 +8,7 @@
 
 #import "HYAPIManager.h"
 #import "AFNetworkReachabilityManager.h"
+#import <AFNetworking.h>
 @implementation HYAPIManager
 
 + (instancetype)shareInstance {
@@ -75,7 +76,38 @@
 }
 
 
-
+- (void)postNoHudNoAfterWithCompletion:(void(^)(BOOL success,id data,NSString *error))completion {
+    
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];//请求
+    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
+    
+    
+    [manager GET:@"https://www.baidu.com/" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+        //这里可以获取到目前数据请求的进度
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {//请求成功
+        
+        if (completion) {
+            completion(YES,nil,@"");
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {//请求失败
+        
+        if (completion) {
+            completion(YES,nil,@"");
+        }
+        
+        
+    }];
+    
+}
 
 - (void)checkNetWorkTransWithCompletion:(void(^)(BOOL success))completion {
     

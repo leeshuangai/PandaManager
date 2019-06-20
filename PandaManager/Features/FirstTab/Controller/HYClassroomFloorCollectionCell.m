@@ -47,4 +47,11 @@
     return _titleLabel;
 }
 
+
+- (void)setIsSelectedRoom:(BOOL)isSelectedRoom {
+    _isSelectedRoom = isSelectedRoom;
+    _titleLabel.layer.borderColor =_isSelectedRoom? COLOR_JJ_THEME.CGColor: COLOR_JJ_TEXT_Describe.CGColor;
+}
+
 @end
+

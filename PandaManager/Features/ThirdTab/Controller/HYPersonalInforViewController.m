@@ -25,9 +25,9 @@
     self.view.backgroundColor = COLOR_JJ_BACKGROUND;
     self.tableView.backgroundColor = COLOR_JJ_BACKGROUND;
     self.userInfo = [NSMutableArray array];
-    NSArray *inforList = @[@"姓名",@"院系",@"身份证号",@"教工号",@"办公室",@"电话",@"办公室电话"];
+    NSArray *inforList = @[@"名称",@"账号"];
     
-    NSArray * userInfo = @[        [HYUserManager shareInstance].currentUser.userName?:@"--",        [HYUserManager shareInstance].currentUser.department?:@"--",        [HYUserManager shareInstance].currentUser.identityNumber?:@"--",        [HYUserManager shareInstance].currentUser.teachId?:@"--",        [HYUserManager shareInstance].currentUser.office?:@"--",        [HYUserManager shareInstance].currentUser.mobile?:@"--",        [HYUserManager shareInstance].currentUser.officeMobile?:@"--"].mutableCopy;
+    NSArray * userInfo = @[@"攀大找教室学校端",[HYUserManager shareInstance].currentUser.userId ].mutableCopy;
     
     [inforList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
        
@@ -99,7 +99,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-       return 8;
+       return 3;
 }
 
 
@@ -113,22 +113,12 @@
         [_tableView registerClass:[HYPersonalInforCell class] forCellReuseIdentifier:@"HYPersonalInforCell"];
         
           [_tableView registerClass:[HYAvaterCustomCell class] forCellReuseIdentifier:@"HYAvaterCustomCell"];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        //_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
 - (NSString *)getNavigationTitle {
     return @"个人信息";
 }
-- (UIImage *)getCustomNavigationBarRightButtonImage {
-    return [UIImage imageNamed:@"icon_edit"];
-}
-- (void)customNavigationBarRightButtonAction:(id)sender {
-    
-    HYEditPersonalInforViewController *vc = [[HYEditPersonalInforViewController alloc]init];
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    
-}
+
 @end

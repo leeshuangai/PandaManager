@@ -17,7 +17,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
-    [self saveUser];
+    
+    [[HYAPIManager shareInstance]postNoHudNoAfterWithCompletion:^(BOOL success, id  _Nonnull data, NSString * _Nonnull error) {
+        
+    }];
+    
+    [[HYAPIManager shareInstance]querySaveSubcribeClassroomRecord];
+    
+    
+    [[HYAPIManager shareInstance]queryDefaultClassroomList];
+    
+   
     
     TabBarViewController *vc = [[TabBarViewController alloc]init];
     
@@ -34,22 +44,7 @@
     return YES;
 }
 
-- (void)saveUser {
-    
-    HYUser *user = [[HYUser alloc]init];
-    user.userId = @"18845326754";
-    user.teachId = @"20141234527";
-    user.password = @"111111";
-    user.userName = @"曾小雨";
-    user.department = @"医学院";
-    user.officeMobile = @"0812-2234320";
-    user.office = @"励志楼203号";
-    user.mobile = @"18845326754";
-    user.identityNumber = @"510131197012042345";
-    [[HYUserManager shareInstance]saveUserInfo:user completed:^(BOOL completed) {
-        
-    }];
-}
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

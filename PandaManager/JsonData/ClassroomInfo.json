@@ -1,14 +1,14 @@
 
 [
     
-    {"name":"博学楼","img":"resource_ellipse1","openTime":"6:00-22:00","seat":"50","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"6","classroomCount":"6"},
-    {"name":"励志楼","img":"resource_ellipse2","openTime":"6:00-22:00","seat":"50","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"5","classroomCount":"6"},
-    {"name":"一教","img":"resource_ellipse3","openTime":"6:00-22:00","seat":"50","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"6","classroomCount":"8"},
-    {"name":"二教","img":"resource_ellipse4","openTime":"6:00-22:00","seat":"100","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"7","classroomCount":"8"},
-    {"name":"三教","img":"resource_ellipse5","openTime":"6:00-22:00","seat":"200","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"6","classroomCount":"8"},
-    {"name":"四教","img":"resource_ellipse6","openTime":"6:00-22:00","seat":"100","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"6","classroomCount":"6"},
-    {"name":"学生活动中心","img":"resource_ellipse7","openTime":"6:00-22:00","seat":"1000","device":"投影仪/电视/插座板","floor":"N","closeTime":"22:00"},
-    {"name":"第一会堂","img":"resource_ellipse8","openTime":"6:00-22:00","seat":"3000","device":"投影仪/电视/插座板","floor":"N","closeTime":"22:00"},
-    {"name":"第二会堂","img":"resource_ellipse9","openTime":"6:00-22:00","seat":"2000","device":"投影仪/电视/插座板","floor":"N","closeTime":"22:00"},
+    {"name":"博学楼","img":"resource_ellipse1","openTime":"6:00-22:00","seat":"50","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"6","classroomCount":"6","floorInfo":["6","6","6","6","6","6"],"classroomId":"11"},
+    {"name":"励志楼","img":"resource_ellipse2","openTime":"6:00-22:00","seat":"50","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"5","classroomCount":"6","floorInfo":["6","6","6","6","6"],"classroomId":"22"},
+    {"name":"一教","img":"resource_ellipse3","openTime":"6:00-22:00","seat":"50","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"6","classroomCount":"8","floorInfo":["8","8","8","8","8","8"],"classroomId":"33"},
+    {"name":"二教","img":"resource_ellipse4","openTime":"6:00-22:00","seat":"100","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"7","classroomCount":"8","floorInfo":["8","8","8","8","8","8","8"],"classroomId":"44"},
+    {"name":"三教","img":"resource_ellipse5","openTime":"6:00-22:00","seat":"200","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"6","classroomCount":"8","floorInfo":["8","8","8","8","8","8"],"classroomId":"55"},
+    {"name":"四教","img":"resource_ellipse6","openTime":"6:00-22:00","seat":"100","device":"投影仪/电视/插座板","floor":"Y","closeTime":"22:00","flooorCount":"6","classroomCount":"6","floorInfo":["6","6","6","6","6","6"],"classroomId":"66"},
+    {"name":"学生活动中心","img":"resource_ellipse7","openTime":"6:00-22:00","seat":"1000","device":"投影仪/电视/插座板","floor":"N","closeTime":"22:00","flooorCount":"1","classroomCount":"1","floorInfo":["1"],"classroomId":"77"},
+    {"name":"第一会堂","img":"resource_ellipse8","openTime":"6:00-22:00","seat":"3000","device":"投影仪/电视/插座板","floor":"N","closeTime":"22:00","flooorCount":"1","classroomCount":"1","floorInfo":["1"],"classroomId":"88"},
+    {"name":"第二会堂","img":"resource_ellipse9","openTime":"6:00-22:00","seat":"2000","device":"投影仪/电视/插座板","floor":"N","closeTime":"22:00","flooorCount":"1","classroomCount":"1","floorInfo":["1"],"classroomId":"99"},
     
 ]

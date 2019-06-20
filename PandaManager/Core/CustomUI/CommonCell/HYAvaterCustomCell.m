@@ -79,6 +79,7 @@
         _avaterImg.layer.cornerRadius = kAdaptedHeight(46)/2;
         _avaterImg.layer.masksToBounds = YES;
         _avaterImg.backgroundColor = COLOR_JJ_BACKGROUND;
+        _avaterImg.image = [UIImage imageNamed:@"icon_default"];
     }
     return _avaterImg;
 }

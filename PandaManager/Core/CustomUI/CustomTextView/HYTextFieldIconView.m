@@ -68,17 +68,18 @@
         
         make.left.equalTo(self.mas_left);
         make.centerY.equalTo(self);
-      
+        make.width.mas_equalTo(kAdaptedWidth(12));
+        make.height.mas_equalTo(kAdaptedHeight(17));
     }];
-   
-
+    
+    
     
     [self.textField mas_remakeConstraints:^(MASConstraintMaker *make) {
         
-         make.right.equalTo(self.mas_right).offset(kAdaptedWidth(-20));
-         make.left.equalTo(self.icon.mas_right).offset(15);
-         make.top.equalTo(self);
-         make.bottom.equalTo(self.mas_bottom).offset(-1);
+        make.right.equalTo(self.mas_right).offset(kAdaptedWidth(-20));
+        make.left.equalTo(self.icon.mas_right).offset(15);
+        make.top.equalTo(self);
+        make.bottom.equalTo(self.mas_bottom).offset(-1);
         
     }];
     

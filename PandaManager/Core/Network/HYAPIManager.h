@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)postNoHudWithCompletion:(void(^)(BOOL success,id data,NSString *error))completion;
 
+
+- (void)postNoHudNoAfterWithCompletion:(void(^)(BOOL success,id data,NSString *error))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

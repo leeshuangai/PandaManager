@@ -21,6 +21,8 @@ typedef void (^ImagePickerControllerfFinshed)(NSArray <UIImage *>*photos);
 
 + (instancetype)shareInstance;
 
++ (BOOL)isNeedLogin;
+
 + (void)needLogin;
 
 + (void)swicthTabRootController;

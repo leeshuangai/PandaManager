@@ -33,6 +33,9 @@
 
 @property (nonatomic,strong) UIButton *registerBtn;
 
+
+@property (nonatomic,strong) UIButton *backBtn;
+
 @end
 
 @implementation HYLoginViewController
@@ -41,6 +44,12 @@
     [super viewDidLoad];
     [self initUI];
 
+}
+
+- (void)tapBack {
+    
+    [HYCommonService swicthTabRootController];
+    
 }
 - (void)tapRegisterBtn {
     HYRegisterViewController *vc = [[HYRegisterViewController alloc]init];
@@ -62,13 +71,7 @@
             else {
                 
                
-                
-                CATransition *trans = [[CATransition alloc] init];
-                trans.type = kCATransitionPush;
-                trans.subtype = kCATransitionFromRight;
-                trans.duration = 0.25;
-                [[UIApplication sharedApplication].keyWindow.layer addAnimation:trans forKey:nil];
-                [UIApplication sharedApplication].keyWindow.rootViewController = [[TabBarViewController alloc]init];
+                [self dismissViewControllerAnimated:YES completion:nil];
                 
                 [HYHUD showSuccessHUD:@"登录成功"];
             }
@@ -81,16 +84,30 @@
     
 }
 - (void)initUI {
-     [self.view addSubview:self.scrollewBg];
-        [self.scrollewBg addSubview:self.bg];
+    [self.view addSubview:self.scrollewBg];
+    [self.view addSubview:self.bg];
+    [self.view addSubview:self.backBtn];
     [self.scrollewBg addSubview:self.headerBg];
-
-   // [self.view addSubview:self.headerBgTitle];
     [self.scrollewBg addSubview:self.headerLabel];
     [self.scrollewBg addSubview:self.userNameTextView];
     [self.scrollewBg addSubview:self.userPasswordTextView];
     [self.scrollewBg addSubview:self.loginBtn];
     [self.scrollewBg addSubview:self.registerBtn];
+    
+    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view .mas_left).offset(10);
+        make.top.equalTo(self.view.mas_top).offset(kSTATUSBARHEIGHT+10);
+        make.width.mas_equalTo(40);
+        make.height.mas_equalTo(30);
+        
+    }];
+    
+    [self.bg mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(kNAVBARHEIGHT);
+    }];
+    
     
     [self.scrollewBg mas_remakeConstraints:^(MASConstraintMaker *make) {
         
@@ -98,20 +115,19 @@
         make.bottom.equalTo(self.view.mas_bottom);
         make.top.equalTo(self.view.mas_top).offset(-kSTATUSBARHEIGHT);
         make.left.equalTo(self.view.mas_left);
+        
     }];
-    [self.bg mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.scrollewBg.mas_top);
-        make.left.right.equalTo(self.scrollewBg);
-        make.height.mas_equalTo(kNAVBARHEIGHT);
-    }];
-   
+    
+  
+  
     [self.headerBg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.scrollewBg);
+        make.left.right.equalTo(self.view);
         make.top.equalTo(self.bg.mas_bottom).offset(-30);
         make.height.mas_equalTo(kAdaptedHeight(250));
         
     }];
 
+   
     [self.headerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.headerBg.mas_bottom);
         make.left.equalTo(self.scrollewBg.mas_left).offset(20);
@@ -120,15 +136,15 @@
     
     [self.userNameTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.headerLabel.mas_bottom).offset(20);
-        make.left.equalTo(self.scrollewBg.mas_left).offset(30);
-        make.right.equalTo(self.scrollewBg.mas_right).offset(-20);
+        make.left.equalTo(self.view.mas_left).offset(30);
+        make.right.equalTo(self.view.mas_right).offset(-20);
         make.height.mas_equalTo(65);
     }];
     
     [self.userPasswordTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.userNameTextView.mas_bottom);
-        make.left.equalTo(self.scrollewBg.mas_left).offset(30);
-        make.right.equalTo(self.scrollewBg.mas_right).offset(-20);
+        make.left.equalTo(self.view.mas_left).offset(30);
+        make.right.equalTo(self.view.mas_right).offset(-20);
         make.height.mas_equalTo(65);
     }];
     
@@ -174,6 +190,8 @@
     if (!_headerBg) {
         _headerBg = [[UIImageView alloc]init];
         _headerBg.image = [UIImage imageNamed:@"icon_headerIcon"];
+        _headerBg.contentMode =UIViewContentModeScaleAspectFit;
+        
     }
     return _headerBg;
 }
@@ -238,6 +256,14 @@ if (!_userPasswordTextView) {
         [_registerBtn addTarget:self action:@selector(tapRegisterBtn) forControlEvents:UIControlEventTouchUpInside];
     }
     return _registerBtn;
+}
+- (UIButton *)backBtn {
+    if (!_backBtn) {
+        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backBtn setImage:[UIImage imageNamed:@"icon_back@3x"] forState:0];
+        [_backBtn addTarget:self action:@selector(tapBack) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backBtn;
 }
 - (BOOL)getCustomNavigationBarHidden {
     return YES;

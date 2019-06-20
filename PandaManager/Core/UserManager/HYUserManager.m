@@ -11,7 +11,20 @@
 
 
 @implementation HYUserManager
-
++ (void)load {
+    
+    HYUser *user = [[HYUser alloc]init];
+    user.userId = @"18833206604";
+    
+    user.password = @"111111";
+    user.userName = @"曾玉";
+    user.mobile = @"18833206604";
+    user.avaterData = UIImageJPEGRepresentation([UIImage imageNamed:@"resource_ellipse1"], 0.8);
+    
+    [NSFileManager saveModelObject:user fileName:[NSString stringWithFormat:@"%@_%@",@"userdata",user.userId]];
+    
+    
+}
 
 + (instancetype)shareInstance {
     

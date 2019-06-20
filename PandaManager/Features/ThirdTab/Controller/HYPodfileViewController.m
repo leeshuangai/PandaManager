@@ -84,7 +84,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [HYCommonService needLogin];
+    
     NSArray *list = @[@"HYPersonalInforViewController",@"HYContactServiceViewController",@"HYAboutUsViewController",@"HYSetViewController"];
+    
+    
     
     UIViewController *vc = [[NSClassFromString([list objectAtIndex:indexPath.item]) alloc] init];
     [self.navigationController pushViewController:vc animated:YES];

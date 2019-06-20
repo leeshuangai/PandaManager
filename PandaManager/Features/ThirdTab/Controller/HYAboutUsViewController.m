@@ -43,7 +43,7 @@
 }
 - (UIImageView *)bg {
     if (!_bg) {
-        _bg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_aboutus"]];
+        _bg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_icon"]];
         _bg.contentMode =UIViewContentModeScaleAspectFill;
     }
     return _bg;

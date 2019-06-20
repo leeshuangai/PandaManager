@@ -7,10 +7,14 @@
 //
 
 #import "HYBaseViewController.h"
-
+#import "HYClassroomModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HYaddBuildingViewController : HYBaseViewController
+
+@property (nonatomic,strong) HYClassroomModel *classroomModel;
+
+@property (nonatomic,copy) NSString *isEdit;
 
 @end
 

@@ -13,6 +13,7 @@
 #import "HYOrderClassroomViewController.h"
 #import "HYUIService.h"
 #import "HYaddBuildingViewController.h"
+#import "HYCustomAlertView.h"
 @interface HYFirstTabViewController ()
 @property (nonatomic,strong) UIScrollView *scrollewBg;
 @property (nonatomic,strong) UIImageView *headerImg;
@@ -23,14 +24,36 @@
 @end
 
 @implementation HYFirstTabViewController
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.scrollewBg .mj_header beginRefreshing];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUI];
-    // Do any additional setup after loading the view.
+  
 }
-
+- (void)queryClassroomList {
+    
+    [[HYAPIManager shareInstance]queryObtainClassromListWithCompletion:^(BOOL success, id  _Nonnull data, NSString * _Nonnull error) {
+        
+        if (success) {
+           
+            self.classroomList = [NSArray arrayWithArray:data];
+            [self initClassroomUI];
+            
+        }else{
+       
+            [HYHUD showSuccessHUD:error];
+        }
+            [self.scrollewBg.mj_header endRefreshing];
+        
+    }];
+    
+}
 - (void)initUI {
+    
+    
     [self.view addSubview:self.scrollewBg];
     [self.scrollewBg addSubview:self.headerImg];
     [self.scrollewBg addSubview:self.contentView];
@@ -65,6 +88,13 @@
         make.centerX.equalTo(self.scrollewBg);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(kAdaptedHeight(19));
     }];
+   
+    
+   // [self initClassroomUI];
+}
+
+- (void)initClassroomUI {
+    [self.contentView removeAllSubviews];
     int count = 3; // 每行按钮的数量为 3
     CGFloat btnWidth = (kScreenWidth-kAdaptedWidth(30)) / count;  //宽
     CGFloat btnHeight = kAdaptedHeight(120); //高
@@ -76,7 +106,7 @@
             [btn setImage:[UIImage imageNamed:@"icon_plus"] forState:0];
             [self.contentView addSubview: btn];
             btn.frame = CGRectMake(col * btnWidth, row * btnHeight+10, btnWidth, btnHeight);
-          
+            
             [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.headerImg.mas_bottom).offset(20);
                 make.left.equalTo(self.view.mas_left).offset(kAdaptedWidth(15));
@@ -84,18 +114,41 @@
                 make.bottom.equalTo(btn.mas_bottom).offset(0);
             }];
             [btn addTarget:self
-                                  action:@selector(BtnClick:)
+                    action:@selector(BtnClick:)
           forControlEvents:UIControlEventTouchUpInside];
         }else {
             HYClassroomModel *model = [self.classroomList objectAtIndex:i];
-            HYClassroomCustomView *view = [[HYClassroomCustomView alloc]initWithIcon:model.img name:model.name];
+            HYClassroomCustomView *view = [[HYClassroomCustomView alloc]initWithModel:model];
             view.tag = 100+i;
             @weakify(self);
+           
+            
             view.handle = ^(HYClassroomCustomView * _Nonnull view) {
                 @strongify(self);
                 [self tapCustomView:view];
             };
             
+            view.deleteHandle = ^(HYClassroomCustomView * _Nonnull view) {
+                
+                NSInteger index = view.tag - 100;
+               
+                [HYCustomAlertView alertViewWithDetail:@"确定删除该教学楼" cancleTitle:@"暂不" commitTitle:@"确定" cancleHandle:^(HYCustomAlertView *alert) {
+                    
+                } commitHandle:^(HYCustomAlertView *alert) {
+                    [alert dismissView];
+                    [[HYAPIManager shareInstance]queryDeleteClassromWithClassModel:self.classroomList[index] completion:^(BOOL success, id  _Nonnull data, NSString * _Nonnull error) {
+                       
+                        if (success) {
+                            [HYHUD showSuccessHUD:@"删除成功"];
+                            self.classroomList = [NSArray arrayWithArray:data];
+                            [self initClassroomUI];
+                        }else{
+                            [HYHUD showSuccessHUD:error];
+                        }
+                    }];
+                }];
+                
+            };
             view.frame = CGRectMake(col * btnWidth, row * btnHeight+10, btnWidth, btnHeight);
             [self.contentView addSubview:view];
         }
@@ -107,13 +160,11 @@
     
     
     [self.view layoutIfNeeded];
-    
-    
-   
-    
 }
 - (void)BtnClick:(UIButton *)btn
 {
+    [HYCommonService needLogin];
+    
     HYaddBuildingViewController *vc = [[HYaddBuildingViewController alloc] init];
     [self.navigationController pushViewController:vc animated: YES];
 }
@@ -121,6 +172,12 @@
     if (!_scrollewBg) {
         _scrollewBg = [[UIScrollView alloc] init];
         _scrollewBg.backgroundColor = [UIColor whiteColor];
+        @weakify(self);
+        _scrollewBg.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            @strongify(self);
+            [self queryClassroomList];
+            
+        }];
     }
      return _scrollewBg;
 }
@@ -144,14 +201,7 @@
     }
     return _contentView;
 }
-- (NSArray *)classroomList {
-    //if (_classroomList) {
-    _classroomList = [NSArray yy_modelArrayWithClass:[HYClassroomModel class] json:[TPFileHelper loadingMainBundleJsonResouJsonResourceWithFileName:@"ClassroomInfo"]];
-    //}
 
-    return _classroomList;
-    
-}
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
@@ -172,33 +222,38 @@
 }
 - (void)tapCustomView:(HYClassroomCustomView *)view {
     
+    [HYCommonService needLogin];
+    
     NSInteger index = view.tag - 100;
     
     HYClassroomModel *model = self.classroomList[index];
-    
-    if ([model.floor isEqualToString:@"Y"]) {
-        HYClassroomFloorViewController *vc = [[HYClassroomFloorViewController alloc]init];
-        vc.classroomModel = model;
-        [self.navigationController pushViewController:vc animated:YES];
-    }else {
-        
-        HYOrderClassroomViewController *vc = [[HYOrderClassroomViewController alloc]init];
-        vc.classroomModel = model;
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    }
-    
+    HYClassroomFloorViewController *vc = [[HYClassroomFloorViewController alloc]init];
+    vc.classroomModel = model;
+    [self.navigationController pushViewController:vc animated:YES];
+  
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (NSString *)getNavigationTitle {
     return @"首页";
+}
+- (UIImage *)getCustomNavigationBarRightButtonImage {
+    return [UIImage imageNamed:@"icon_edit-1"];
+}
+- (void)customNavigationBarRightButtonAction:(id)sender {
+    
+    if ([HYCommonService isNeedLogin]) {
+        return;
+    }
+    
+    [self.contentView .subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[HYClassroomCustomView class]]) {
+            
+            
+            HYClassroomCustomView *view = obj;
+            [view tapSelected];
+            
+        }
+    }];
+    
 }
 @end

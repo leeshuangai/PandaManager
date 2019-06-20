@@ -23,6 +23,8 @@
     [self setTabBarTitleAttrbutesStyle];
     [self initChildVC];
    
+    
+   
 }
 
 - (void)initChildVC {

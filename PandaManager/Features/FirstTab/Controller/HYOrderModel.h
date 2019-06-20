@@ -28,6 +28,30 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *orderStatus;
 
 @property (nonatomic,copy) NSString *classFloor;
+
+
+/** 姓名 */
+@property (nonatomic,copy) NSString *orderUserName;
+
+/** 院系 */
+@property (nonatomic,copy) NSString *orderNameDepartment;
+
+/** 身份证号码 */
+@property (nonatomic,copy) NSString *orderIdentityNumber;
+
+/** 办公室 */
+@property (nonatomic,copy) NSString *orderOffice;
+
+/** 手机号 */
+@property (nonatomic,copy) NSString *orderMobile;
+
+/** 办公室电话 */
+@property (nonatomic,copy) NSString *orderOfficeMobile;
+
+
+@property (nonatomic,strong) NSData *orderAvaterData;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

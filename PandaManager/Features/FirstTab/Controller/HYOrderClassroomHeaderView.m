@@ -19,6 +19,8 @@
 @property (nonatomic,strong) UILabel *timeLabel;
 @property (nonatomic,strong) UIButton *arrowBtn;
 @property (nonatomic,strong) UIButton *backBtn;
+
+@property (nonatomic,strong) UILabel *label;
 @end
 @implementation HYOrderClassroomHeaderView
 
@@ -41,6 +43,8 @@
     [self addSubview:self.timeLabel];
     [self addSubview:self.arrowBtn];
     [self addSubview:self.backBtn];
+    [self addSubview:self.label];
+    
     
     [self.img mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(kAdaptedWidth(15));
@@ -91,8 +95,21 @@
         make.width.height.top.equalTo(self.backBtn);
         make.right.equalTo(self.mas_right).offset(kAdaptedWidth(-40));
     }];
+    
+    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backBtn.mas_bottom).offset(kAdaptedHeight(30));
+        make.left.equalTo(self.mas_left).offset(15);
+    }];
 }
-
+- (UILabel *)label {
+    if (!_label) {
+        _label = [[UILabel alloc]init];
+        _label.text = @"已预约";
+        _label.textColor = COLOR_JJ_TEXT_MAIN;
+        _label.font = kSystemFontSize(14);
+    }
+    return _label;
+}
 
 - (UIImageView *)img {
     if (!_img) {

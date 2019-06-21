@@ -108,7 +108,13 @@
             cell.isSelectedRoom = NO;
         }
 
-        cell.floor = [NSString stringWithFormat:@"%ld0%ld",(long)indexPath.section+1,indexPath.item+1];
+        if (indexPath.item+1 <10) {
+            cell.floor = [NSString stringWithFormat:@"%ld0%ld",(long)indexPath.section+1,indexPath.item+1];
+            
+        }else {
+            cell.floor = [NSString stringWithFormat:@"%ld%ld",(long)indexPath.section+1,indexPath.item+1];
+        }
+        
         
         
         
@@ -219,8 +225,15 @@
 - (void)customNavigationBarRightButtonAction:(id)sender {
     
     if (self.selectedIndex) {
-      
-        [HYCustomAlertView alertViewWithDetail:[NSString stringWithFormat:@"确认删除%@教室？",[NSString stringWithFormat:@"%ld0%ld",(long)self.selectedIndex.section+1,self.selectedIndex.item+1]] cancleTitle:@"取消" commitTitle:@"确认" cancleHandle:^(HYCustomAlertView *alert) {
+        NSString *text;
+        if (self.selectedIndex.item+1 <10) {
+              text = [NSString stringWithFormat:@"%ld0%ld",(long)self.selectedIndex.section+1,self.selectedIndex.item+1];
+            
+        }else {
+            text = [NSString stringWithFormat:@"%ld%ld",(long)self.selectedIndex.section+1,self.selectedIndex.item+1];
+        }
+        
+        [HYCustomAlertView alertViewWithDetail:[NSString stringWithFormat:@"确认删除%@教室？",text] cancleTitle:@"取消" commitTitle:@"确认" cancleHandle:^(HYCustomAlertView *alert) {
             
             
         } commitHandle:^(HYCustomAlertView *alert) {

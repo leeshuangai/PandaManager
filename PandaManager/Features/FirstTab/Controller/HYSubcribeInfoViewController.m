@@ -22,11 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-//    self.userInfo = @[@"姓名：苑洁",@"院系：医学院",@"身份证号码：510131197****2345",@"教工号：20171234527",@"办公室：励志楼203号",@"电话：19945326754",@"办公室电话：0812-3361218"];
-//  
-//    self.classroomInfo = @[@"用途：2017届护士1班基础课",@"时间：10:00～12:00",@"教室：博学楼201室"];
-//    
+
 //    
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -39,9 +35,9 @@
 - (void)setOrderModel:(HYOrderModel *)orderModel {
     _orderModel = orderModel;
     
-    self.userInfo = @[_orderModel.orderUserName?:@"--",_orderModel.orderNameDepartment?:@"--",_orderModel.orderIdentityNumber?:@"--",@"--",_orderModel.orderOffice?:@"--",_orderModel.orderMobile?:@"--",_orderModel.orderOfficeMobile?:@"--"];
+    self.userInfo = @[[NSString stringWithFormat:@"姓名：%@",_orderModel.orderUserName],_orderModel.orderNameDepartment?:@"院系：--",_orderModel.orderIdentityNumber?:@"身份证号：",@"教工号：--",_orderModel.orderOffice?:@"办公室：--",_orderModel.orderMobile?:@"电话：--",_orderModel.orderOfficeMobile?:@"办公室电话：--"];
     
-    self.classroomInfo = @[_orderModel.className?:@"--",_orderModel.orderTime?:@"--",[NSString stringWithFormat:@"%@%@",_orderModel.orderClassroom,_orderModel.classFloor]];
+    self.classroomInfo = @[[NSString stringWithFormat:@"用途：%@",_orderModel.className?:@"--"],[NSString stringWithFormat:@"时间：%@",_orderModel.orderTime?:@"--"],[NSString stringWithFormat:@"教室:%@%@",_orderModel.orderClassroom,_orderModel.classFloor]];
     
     [self.tableView reloadData];
 }
@@ -88,7 +84,7 @@
     }
     
     UIView *header = [[UIView alloc]init];
-    header.backgroundColor = COLOR_JJ_BACKGROUND;
+    header.backgroundColor = [UIColor groupTableViewBackgroundColor];
     header.frame = CGRectMake(0, 0, kScreenWidth, kAdaptedHeight(80));
     
     UILabel *label = [HYUIService initUILabelWithText:text textColor:COLOR_JJ_TEXT_MAIN font:kSystemFontSize(14)];

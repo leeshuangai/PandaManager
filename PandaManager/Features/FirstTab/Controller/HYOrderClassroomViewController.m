@@ -93,7 +93,9 @@
     if (self.orderModels.count) {
        
         HYSubcribeInfoViewController *vc = [[HYSubcribeInfoViewController alloc]init];
-        vc.orderModel = self.orderModels[indexPath.item];
+       
+        vc.orderModel = [self.orderModels objectAtIndex:indexPath.item];
+        
         [self.navigationController pushViewController:vc animated:YES];
         
     }

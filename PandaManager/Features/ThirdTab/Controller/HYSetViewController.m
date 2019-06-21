@@ -38,12 +38,12 @@
     
     
     HYPodfileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HYPodfileTableViewCell"];
-    NSArray *list = @[@"联系客服",@"关于我们",@"版本号"];
+    NSArray *list = @[@"清除缓存",@"版本号"];
     if (cell) {
         
         cell.name = [list objectAtIndex:indexPath.item];
         
-        if (indexPath.item == 2) {
+        if (indexPath.item == 1) {
             
             cell.detail = @"1.0";
         }
@@ -56,23 +56,21 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSArray *list = @[@"HYContactServiceViewController",@"HYAboutUsViewController"];
-    
-    if (indexPath.item == 2) {
+  
+    if (indexPath.item == 0) {
        
-       // [HYCustomAlertView alertViewWithDetail:@"您当前版本为1.0" cancleTitle:@"我知道了" cancleHandle:^(HYCustomAlertView *alert) {
-            
-       // }];
-    }else {
-        UIViewController *vc = [[NSClassFromString([list objectAtIndex:indexPath.item]) alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        [HYHUD showLoadingHUD];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [HYHUD hiddenLoadingHUD];
+            [HYHUD showSuccessHUD:@"清除缓存完成"];
+        });
     }
    
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 2;
 }
 - (void)tapLogoutBtn {
     

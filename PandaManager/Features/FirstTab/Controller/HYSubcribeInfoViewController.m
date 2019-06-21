@@ -49,6 +49,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HYSubcribeInfoTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"refuse"];
+   
+    cell.selectionStyle =UITableViewCellSelectionStyleNone;
+    
     if (indexPath.section == 0) {
        
          cell.label.text = self.userInfo[indexPath.item];

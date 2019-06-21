@@ -89,13 +89,14 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    HYOrderModel *order =self.orderModels[indexPath.item];
-    //if ([order.orderStatus isEqualToString:@"已预约"]) {
+    
+    if (self.orderModels.count) {
+       
         HYSubcribeInfoViewController *vc = [[HYSubcribeInfoViewController alloc]init];
         vc.orderModel = self.orderModels[indexPath.item];
         [self.navigationController pushViewController:vc animated:YES];
         
-    //}
+    }
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,6 +116,7 @@
         HYNullTabTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HYNullTabTableCell"];
         if (cell) {
             
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             //cell.orderModels =self.orderModels;
             

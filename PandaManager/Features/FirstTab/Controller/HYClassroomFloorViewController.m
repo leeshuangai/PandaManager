@@ -238,7 +238,7 @@
         
     }
     else{
-        [HYHUD showSuccessHUD:@"请选择要要删除的楼层"];
+        [HYHUD showSuccessHUD:@"请选择需要删除的教室"];
     }
 }
 - (HYSubmitButton *)submitBtn {

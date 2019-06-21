@@ -81,7 +81,11 @@
         
         if (success) {
             
-            [HYCommonService needLogin];
+            HYLoginViewController *loginvc = [[HYLoginViewController alloc]init];
+            
+            loginvc.isTab = @"1";
+            
+            [self presentViewController:loginvc animated:YES completion:nil];
             
         }
         

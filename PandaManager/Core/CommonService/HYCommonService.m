@@ -37,6 +37,7 @@
         HYLoginViewController *loginvc = [[HYLoginViewController alloc]init];
         
         UIViewController *vc = [NSObject getCurrentVC];
+       
         [vc presentViewController:loginvc animated:YES completion:nil];
         
         return YES;
@@ -54,6 +55,7 @@
         HYLoginViewController *loginvc = [[HYLoginViewController alloc]init];
         
         UIViewController *vc = [NSObject getCurrentVC];
+        
         [vc presentViewController:loginvc animated:YES completion:nil];
         
         return;
@@ -80,6 +82,8 @@
 + (void)switchLoginController{
     
     HYLoginViewController *vc = [[HYLoginViewController alloc]init];
+   
+    vc.isTab = @"1";
     
     CATransition *trans = [[CATransition alloc] init];
     trans.type = kCATransitionPush;

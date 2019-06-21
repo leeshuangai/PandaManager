@@ -70,9 +70,12 @@
             }
             else {
                 
-               
-                [self dismissViewControllerAnimated:YES completion:nil];
-                
+                if ([self.isTab isEqualToString:@"1"]) {
+                    [HYCommonService swicthTabRootController];
+                }else{
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+
                 [HYHUD showSuccessHUD:@"登录成功"];
             }
         }];
@@ -85,7 +88,7 @@
 }
 - (void)initUI {
     [self.view addSubview:self.scrollewBg];
-    [self.view addSubview:self.bg];
+    [self.scrollewBg addSubview:self.bg];
     [self.view addSubview:self.backBtn];
     [self.scrollewBg addSubview:self.headerBg];
     [self.scrollewBg addSubview:self.headerLabel];
@@ -102,31 +105,25 @@
         
     }];
     
-    [self.bg mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top);
-        make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(kNAVBARHEIGHT);
-    }];
-    
-    
     [self.scrollewBg mas_remakeConstraints:^(MASConstraintMaker *make) {
         
         make.width.mas_equalTo(kScreenWidth);
         make.bottom.equalTo(self.view.mas_bottom);
         make.top.equalTo(self.view.mas_top).offset(-kSTATUSBARHEIGHT);
         make.left.equalTo(self.view.mas_left);
-        
+    }];
+    [self.bg mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.scrollewBg.mas_top);
+        make.left.right.equalTo(self.scrollewBg);
+        make.height.mas_equalTo(kNAVBARHEIGHT);
     }];
     
-  
-  
-    [self.headerBg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
+    [self.headerBg mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.scrollewBg);
         make.top.equalTo(self.bg.mas_bottom).offset(-30);
-        make.height.mas_equalTo(kAdaptedHeight(250));
+        make.height.mas_equalTo(kAdaptedHeight(kAdaptedHeight(250)));
         
     }];
-
    
     [self.headerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.headerBg.mas_bottom);
@@ -136,15 +133,15 @@
     
     [self.userNameTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.headerLabel.mas_bottom).offset(20);
-        make.left.equalTo(self.view.mas_left).offset(30);
-        make.right.equalTo(self.view.mas_right).offset(-20);
+        make.left.equalTo(self.scrollewBg.mas_left).offset(30);
+        make.right.equalTo(self.scrollewBg.mas_right).offset(-20);
         make.height.mas_equalTo(65);
     }];
     
     [self.userPasswordTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.userNameTextView.mas_bottom);
-        make.left.equalTo(self.view.mas_left).offset(30);
-        make.right.equalTo(self.view.mas_right).offset(-20);
+        make.left.equalTo(self.scrollewBg.mas_left).offset(30);
+        make.right.equalTo(self.scrollewBg.mas_right).offset(-20);
         make.height.mas_equalTo(65);
     }];
     

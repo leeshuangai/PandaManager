@@ -961,8 +961,8 @@
 			children = (
 				C1DFC80A22B3A06900FA3E53 /* HYRegisterViewController.m */,
 				C1DFC80B22B3A06900FA3E53 /* HYLoginViewController.h */,
-				C1DFC80C22B3A06900FA3E53 /* HYRegisterViewController.h */,
 				C1DFC80D22B3A06900FA3E53 /* HYLoginViewController.m */,
+				C1DFC80C22B3A06900FA3E53 /* HYRegisterViewController.h */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

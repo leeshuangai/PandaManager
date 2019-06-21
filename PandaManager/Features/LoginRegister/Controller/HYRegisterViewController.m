@@ -46,7 +46,7 @@
 }
 - (void)tapLoginBtn {
     HYLoginViewController *vc = [[HYLoginViewController alloc]init];
-    
+    vc.isTab = @"1";
     [self presentViewController:vc animated:YES completion:nil];
     
 }

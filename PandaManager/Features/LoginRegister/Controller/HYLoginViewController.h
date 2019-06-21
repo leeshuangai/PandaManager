@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HYLoginViewController : HYBaseViewController
 
+@property (nonatomic,copy) NSString *isTab;
+
 @end
 
 NS_ASSUME_NONNULL_END

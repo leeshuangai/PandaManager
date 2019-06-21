@@ -15,7 +15,9 @@
 @implementation HYContactServiceViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     self.view.backgroundColor = COLOR_JJ_BACKGROUND;
     
     [self.view addSubview:self.serviceLabel];
@@ -37,7 +39,9 @@
         _serviceLabel.backgroundColor = COLOR_JJ_DEFAULT_WHITE;
          _serviceLabel.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-            UIWebView * webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+           
+            UIWebView * webView = [[UIWebView alloc] init];
+            
             [[UIApplication sharedApplication].keyWindow addSubview:webView];
             [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",@"0812-2234618"]]]];
         
